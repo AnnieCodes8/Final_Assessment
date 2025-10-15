@@ -24,7 +24,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      
+      - name: Show repo structure
+        run: |
+          ls -R
+
       - name: Run tests with pytest
         run: |
-          pytest -v tests/Unit_Tests/Cart_FR002/FR_002_TS001
+          pytest -v
+
