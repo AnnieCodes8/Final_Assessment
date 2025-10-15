@@ -10,10 +10,34 @@ FR-007: Responsive Design.
 
 The test suite also considers non-functional requirements including security, performance, and usability testing. Performance profiling tools (timeit, cProfile) are included to identify bottlenecks and suggest optimizations. The testing framework is fully integrated with GitHub Actions CI/CD ensuring that every code change is automatically validated with audit-ready documentation.
 
+
+## CI/CD Integration
+
+![CI](https://github.com/AnnieCodes8/Final_Assessment/actions/workflows/python_tests.yml/badge.svg)
+
+This repository is integrated with GitHub Actions to ensure continuous validation of the system. The workflow file is located at `.github/workflows/python_tests.yml` and is triggered automatically on every push or pull request to the `main` branch.
+
+### Workflow Steps
+1. Checkout: The workflow checks out the latest version of the repository.  
+2. Set up Python: A fresh Python environment (version 3.13) is provisioned.  
+3. Install dependencies: All required packages from `requirements.txt` are installed.  
+4. Run tests: The full pytest suite in the `tests/` directory is executed.  
+
+### Benefits
+ **Continuous Validation**: Every code change is automatically tested.  
+ **Audit-Ready**: Test results are logged in the Actions tab for traceability.  
+ **Early Detection**: Failures are caught immediately, reducing integration risks.  
+
+The badge above reflects the **live status** of the pipeline:  
+- Green = all tests passing  
+- Red = one or more tests failing  
+
+
 ## Naming Coventions
 FR_xxx = Functional Requirement
 TSxxx = Test Scenario
 UTxxx = Unit Test Case
+
 
 ## Prerequisites
 Before running the project locally, please ensure you have:

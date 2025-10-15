@@ -4,6 +4,9 @@
 
 **⚠️ ACADEMIC USE ONLY - FOR EDUCATIONAL PURPOSES**
 
+## LIVE STATUS OF AUTOMATED TEST PIPELINE
+![CI](https://github.com/AnnieCodes8/Final_Assessment/actions/workflows/python_tests.yml/badge.svg)
+
 ## 🛍️ Application Overview
 
 The Online Bookstore is a comprehensive e-commerce web application built with Flask that demonstrates modern software patterns, user authentication, payment processing, and order management scenarios ideal for software testing education.
