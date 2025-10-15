@@ -40,11 +40,16 @@ def test_valid_shipping_information_submission(client):
     response = client.post(
         "/process-checkout",
         data={
-            "name": "Oli Smith",
-            "address": "10 High Street, London",
-            "city": "London",
-            "zip_code": "SW1A 1AA",
-            "email": "ol8@example.com"
+        "name": "Oli Smith",
+        "address": "10 High Street, London",
+        "city": "London",
+        "zip_code": "SW1A 1AA",
+        "email": "ol8@example.com",
+        # Payment fields required by process_checkout
+        "card_number": "4111111111111234",  # ends with 1234, so passes mock
+        "cvv": "123",
+        "expiry_date": "12/30",
+        "payment_method": "credit_card"
         },
         follow_redirects=True
     )
