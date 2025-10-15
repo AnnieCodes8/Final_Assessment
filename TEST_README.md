@@ -24,9 +24,9 @@ This repository is integrated with GitHub Actions to ensure continuous validatio
 4. Run tests: The full pytest suite in the `tests/` directory is executed.  
 
 ### Benefits
- **Continuous Validation**: Every code change is automatically tested.  
- **Audit-Ready**: Test results are logged in the Actions tab for traceability.  
- **Early Detection**: Failures are caught immediately, reducing integration risks.  
+Continous Validation: Every code change is automatically tested.  
+Audit Readiness: Test results are logged in the Actions tab for traceability.  
+Early Bug Detection: Failures are caught immediately, reducing integration risks.  
 
 The badge above reflects the **live status** of the pipeline:  
 - Green = all tests passing  
