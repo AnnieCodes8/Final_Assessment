@@ -1,4 +1,4 @@
-# TC-FR003-UT015: Verify discount code SAVE10 reduces total by 10%
+# TC-FR003-UT015: Verify discount code SAVE10 reduces total by 10% and is shown on screen
 
 import pytest
 from app import app, cart
@@ -10,12 +10,12 @@ def client():
     with app.test_client() as client:
         yield client
 
-def test_apply_discount_save10_total_only(client):
+def test_apply_discount_save10_total_visible(client):
     """
     Test Case: TC-FR003-UT015
     Requirement: FR-003
     Scenario: FR-003-TS003 (User applies discount code)
-    Title: Verify discount code SAVE10 reduces total by 10%
+    Title: Verify discount code SAVE10 reduces total by 10% and is shown on screen
     Preconditions:
       - Cart contains "The Great Gatsby" (£10.99, Quantity: 1)
     Steps:
@@ -23,6 +23,7 @@ def test_apply_discount_save10_total_only(client):
       - Submit checkout form with discount code "SAVE10"
     Expected Result:
       - Cart/order total is reduced from £10.99 to £9.89
+      - Discounted total is displayed on the confirmation page
     """
 
     # Reset cart and add item
@@ -30,7 +31,7 @@ def test_apply_discount_save10_total_only(client):
     client.post("/add-to-cart", data={"title": "The Great Gatsby", "quantity": 1}, follow_redirects=True)
 
     # Submit checkout form with discount code SAVE10
-    client.post(
+    response = client.post(
         "/process-checkout",
         data={
             # Shipping info
@@ -49,7 +50,9 @@ def test_apply_discount_save10_total_only(client):
         },
         follow_redirects=True
     )
+    html = response.data.decode()
 
-    # After checkout, the cart total should reflect the discount
-    discounted_total = round(cart.get_total_price(), 2)
-    assert discounted_total == 9.89
+    # Verify response is OK
+    assert response.status_code == 200
+    # Verify discounted total is presented to the user
+    assert "9.89" in html or "£9.89" in html
