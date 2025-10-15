@@ -34,5 +34,5 @@ def test_prevent_checkout_with_empty_cart(client):
 
     # Verify system prevents checkout
     assert response.status_code == 200
-    assert "Cart is empty" in html
+    assert "Your cart is empty" in html
     assert "Checkout" not in html or "Proceed to Checkout" not in html
