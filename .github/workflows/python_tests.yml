@@ -27,6 +27,4 @@ jobs:
       
       - name: Run tests with pytest
         run: |
-          pytest -v --collect-only
-
-
+          pytest -v tests/Unit_Tests/Cart_FR002/FR_002_TS001
