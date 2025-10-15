@@ -58,4 +58,4 @@ def test_reject_invalid_discount_code(client):
     # Verify invalid code message is shown
     assert "Invalid" in html or "invalid" in html
     # Verify total remains unchanged (£18.99)
-    assert "18.99" in html or "£18.99" in html
+    assert round(cart.get_total_price(), 2) == 18.99
