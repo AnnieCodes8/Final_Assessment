@@ -26,7 +26,8 @@ jobs:
 
       - name: Show repo structure
         run: |
-          ls -R
+          pwd
+          ls -R tests
 
       - name: Run tests with pytest
         run: |
