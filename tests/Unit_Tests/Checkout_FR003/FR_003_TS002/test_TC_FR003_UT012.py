@@ -22,8 +22,9 @@ def test_valid_shipping_information_submission(client):
       - Navigate to checkout form
       - Enter Name = "Oli Smith"
       - Enter Address = "10 High Street, London"
+      - Enter City = "London"
+      - Enter Zip Code = "SW1A 1AA"
       - Enter Email = "ol8@example.com"
-      - Enter Phone = "07123456789"
       - Submit form
     Expected Result:
       - Form submission succeeds
@@ -35,14 +36,15 @@ def test_valid_shipping_information_submission(client):
     cart.clear()
     client.post("/add-to-cart", data={"title": "The Great Gatsby", "quantity": 1}, follow_redirects=True)
 
-    # Submit valid shipping information
+    # Submit valid shipping information to /process-checkout
     response = client.post(
-        "/checkout",
+        "/process-checkout",
         data={
             "name": "Oli Smith",
             "address": "10 High Street, London",
-            "email": "ol8@example.com",
-            "phone": "07123456789"
+            "city": "London",
+            "zip_code": "SW1A 1AA",
+            "email": "ol8@example.com"
         },
         follow_redirects=True
     )
@@ -51,4 +53,5 @@ def test_valid_shipping_information_submission(client):
     # Verify form submission succeeded and user is on payment step
     assert response.status_code == 200
     assert "Payment" in html or "Enter Payment Details" in html
+    # Optional: check that shipping info is echoed back or stored
     assert "Oli Smith" in html or "Shipping Information" in html
