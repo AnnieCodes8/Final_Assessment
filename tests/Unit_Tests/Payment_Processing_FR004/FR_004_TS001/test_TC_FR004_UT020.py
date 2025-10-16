@@ -1,7 +1,7 @@
 # TC-FR004-UT020: Verify successful PayPal payment with valid card number
 
 import pytest
-from models import PaymentGateway   # adjust import if your PaymentGateway lives in a different module
+from models import PaymentGateway
 
 def test_process_payment_success_paypal():
     """
