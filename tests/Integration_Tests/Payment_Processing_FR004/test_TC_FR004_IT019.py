@@ -1,4 +1,4 @@
-# TC-FR004-UT001: Verify successful credit card payment with valid card number
+# TC-FR004-IT019: Verify successful credit card payment with valid card number
 
 import pytest
 from app import app, cart
@@ -12,7 +12,7 @@ def client():
 
 def test_process_checkout_valid_payment_success(client):
     """
-    Test Case: TC-FR004-UT001
+    Test Case: TC-FR004-IT019
     Requirement: FR-004
     Scenario: FR-004-TS001 (User submits valid payment)
     Title: Verify successful credit card payment with valid card number
@@ -33,7 +33,11 @@ def test_process_checkout_valid_payment_success(client):
 
     # Reset cart and add item
     cart.clear()
-    client.post("/add-to-cart", data={"title": "The Great Gatsby", "quantity": 1}, follow_redirects=True)
+    client.post(
+        "/add-to-cart",
+        data={"title": "The Great Gatsby", "quantity": 1},
+        follow_redirects=True
+    )
 
     # Submit checkout form with valid payment info
     response = client.post(
@@ -59,5 +63,5 @@ def test_process_checkout_valid_payment_success(client):
     assert response.status_code == 200
     # Verify confirmation page rendered
     assert "Order Confirmed" in html or "Thank you for your purchase" in html
-    # Verify transaction_id is shown or implied
-    assert "transaction" in html.lower() or "Transaction" in html
+    # Verify transaction reference is present
+    assert "transaction" in html.lower()
