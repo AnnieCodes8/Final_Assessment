@@ -1,14 +1,30 @@
 # Online Bookstore Testing
 
-This project forms a comprehensive automated test suit based on the given Online Bookstore web application built with Flask. The tests validate the app's core functionality covering unit testing across the following modules:
+This repository contains a comprehensive automated test suite for the Online Bookstore web application built with Flask. The suite validates both functional requirements and non‑functional requirements, ensuring the system is correct, performant, and audit‑ready.
 
-FR-002: Shopping Cart
-FR-003: Checkout Process
-FR-004: Payment Process
-FR-006: Account Management
-FR-007: Responsive Design.
+Functional Requirements Covered:
 
-The test suite also considers non-functional requirements including security, performance, and usability testing. Performance profiling tools (timeit, cProfile) are included to identify bottlenecks and suggest optimizations. The testing framework is fully integrated with GitHub Actions CI/CD ensuring that every code change is automatically validated with audit-ready documentation.
+FR‑002: Shopping Cart
+
+FR‑003: Checkout Process
+
+FR‑004: Payment Processing
+
+FR‑006: Account Management
+
+
+Non‑Functional Requirements Covered
+Security: Authentication, authorization, and input validation tests.
+
+Performance: Benchmarks using timeit and scalability profiling with cProfile.
+
+Usability & Responsiveness: Layout and rendering checks across devices.
+
+Maintainability & Auditability: Traceable test IDs, structured documentation, and reproducible environments.
+
+The test framework is fully integrated with GitHub Actions CI/CD, ensuring every code change is automatically validated and results are logged for traceability.
+
+
 
 
 ## CI/CD Integration
@@ -17,26 +33,36 @@ The test suite also considers non-functional requirements including security, pe
 
 This repository is integrated with GitHub Actions to ensure continuous validation of the system. The workflow file is located at `.github/workflows/python_tests.yml` and is triggered automatically on every push or pull request to the `main` branch.
 
-### Workflow Steps
-1. Checkout: The workflow checks out the latest version of the repository.  
-2. Set up Python: A fresh Python environment (version 3.13) is provisioned.  
-3. Install dependencies: All required packages from `requirements.txt` are installed.  
-4. Run tests: The full pytest suite in the `tests/` directory is executed.  
+The workflow file is located at .github/workflows/python_tests.yml and is triggered automatically on every push or pull request to the main branch.
 
-### Benefits
-Continous Validation: Every code change is automatically tested.  
-Audit Readiness: Test results are logged in the Actions tab for traceability.  
-Early Bug Detection: Failures are caught immediately, reducing integration risks.  
+## Workflow Steps
+Checkout: Retrieves the latest repository state.
 
-The badge above reflects the **live status** of the pipeline:  
-- Green = all tests passing  
-- Red = one or more tests failing  
+Set up Python: Provisions a fresh Python environment (3.13).
+
+Install dependencies: Installs all packages from requirements.txt.
+
+Run tests: Executes the full pytest suite in the tests/ directory.
+
+## Benefits
+Continuous Validation: Every commit is tested automatically.
+
+Audit Readiness: Results are logged in the Actions tab and can be exported.
+
+Early Bug Detection: Failures are caught immediately, reducing integration risk.
+
+The badge above reflects the live pipeline status:
+
+    Green = all tests passing
+
+    Red = one or more tests failing
+
 
 
 ## Naming Coventions
-FR_xxx = Functional Requirement
-TSxxx = Test Scenario
-UTxxx = Unit Test Case
+FR‑xxx = Functional Requirement
+TS‑xxx = Test Scenario
+UT‑xxx / IT‑xxx / PT‑xxx / PROF‑xxx = Unit, Integration, Performance, and Profiling test cases
 
 
 ## Prerequisites
@@ -53,6 +79,11 @@ It’s best practice to run the project inside a virtual environment so dependen
     `C:\dev\Final_Assessment`
 3. Create the virtual environment by typing the following in your terminal:
     `python -m venv venv`
+4. Activate the environment:
+
+    Linux/macOS: `source venv/bin/activate`
+    Windows (CMD): `venv\Scripts\activate`
+    Windows (PowerShell): `.\venv\Scripts\Activate.ps1`
 
 ## Running the Project
 1. Create a Python virtual environment in the project root:
@@ -74,10 +105,16 @@ It’s best practice to run the project inside a virtual environment so dependen
 To execute the unit tests:
 1. Ensure the virtual environment is active.
 2. From the project root, run:
-    `pytest`
+    `pytest -v`
 3. Pytest will automatically run all test scripts inside the tests/ folder:
-    - Unit tests are prefixed with UT- for traceability.
-    - Integration tests are prefixed with IT- for traceability.
+    - Unit Tests: tests/Unit_Tests/
+    - Integration Tests: tests/Integration_Tests/
+    - Performance Tests: tests/Performance_Tests/ (timeit benchmarks)
+    - Profiling Tests: tests/Profiling_Tests/ (cProfile bottleneck analysis)
 
 ## Test Results
-Screenshots of successful test execution are stored in the test_results/ folder.
+Functional & Integration Results: Logged in `test_results/Unit_Tests` and `test_results/Integration_Tests.`
+
+Performance Results: Execution times stored in `test_results/Performance_Tests.`
+
+Profiling Results: cProfile reports stored in `test_results/Profiling_Tests.`
